@@ -4,6 +4,8 @@
 
 package GeneralTax;
 
+import java.lang.reflect.InvocationTargetException;
+
 public abstract class Tax {
     protected double getTaxRate() {
         return 0.0;
@@ -11,6 +13,31 @@ public abstract class Tax {
 
     public double calculateTotalTax(double total) {
         return getTaxRate() * total;
+    }
+
+}
+class OntarioTax extends Tax implements TaxInterface{
+    @Override
+    protected double getTaxRate() {
+        return 0.13;
+    }
+
+    public Tax getTax() throws ClassNotFoundException, InstantiationException, IllegalAccessException,
+            IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+        return this;
+    }
+
+}
+
+class PIETax extends Tax implements TaxInterface{
+    @Override
+    protected double getTaxRate() {
+        return 0.15;
+    }
+
+    public Tax getTax() throws ClassNotFoundException, InstantiationException, IllegalAccessException,
+            IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+        return this;
     }
 
 }
